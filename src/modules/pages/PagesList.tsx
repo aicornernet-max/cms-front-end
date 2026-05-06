@@ -24,6 +24,7 @@ type Page = {
 export default function PagesList() {
   const [pages, setPages] = useState<Page[]>([])
   const [loading, setLoading] = useState(false)
+  const [search, setSearch] = useState("")
 
   const [deleteModal, setDeleteModal] = useState<{
     open: boolean
@@ -41,7 +42,9 @@ export default function PagesList() {
   const fetchPages = async () => {
     try {
       setLoading(true)
-      const res = await axios.get("/pages")
+      const res = await axios.get(
+  `/pages?search=${search}`
+)
       setPages(res.data.data || [])
     } catch (err) {
       console.error(err)
@@ -53,6 +56,16 @@ export default function PagesList() {
   useEffect(() => {
     fetchPages()
   }, [])
+
+  useEffect(() => {
+
+  const delay = setTimeout(() => {
+    fetchPages()
+  }, 400)
+
+  return () => clearTimeout(delay)
+
+}, [search])
 
   // STATUS TOGGLE
   const toggleStatus = async (page: Page) => {
@@ -113,6 +126,28 @@ export default function PagesList() {
       </div>
 
       {/* LOADING */}
+
+      {/* SEARCH */}
+<div className="flex flex-col sm:flex-row gap-3">
+
+  <input
+    type="text"
+    placeholder="Search pages..."
+    value={search}
+    onChange={(e) =>
+      setSearch(e.target.value)
+    }
+    className="flex-1 border rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-black"
+  />
+
+  <button
+    onClick={fetchPages}
+    className="bg-black hover:bg-gray-800 text-white px-5 py-3 rounded-xl w-full sm:w-auto text-sm font-medium"
+  >
+    Search
+  </button>
+
+</div>
       {loading ? (
         <div className="bg-white rounded-2xl p-8 shadow-sm border text-center">
           <p className="text-gray-500">Loading pages...</p>
