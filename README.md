@@ -1,62 +1,124 @@
-# 🚀 CMS Backend API
+# CMS Admin Frontend
 
-## 📌 Overview
-
-This is a scalable backend system for a Content Management System (CMS), built using Node.js and Express. It provides RESTful APIs for managing pages, categories, tools, authentication, and media uploads.
-
-The system is production-ready and integrates with MongoDB Atlas and Cloudinary.
+A modern Content Management System (CMS) Admin Panel built with **React**, **TypeScript**, **Vite**, and **Tailwind CSS**. This application allows administrators to manage tools, categories, pages, SEO content, FAQs, images, and other CMS resources through an intuitive interface.
 
 ---
 
-## ⚙️ Tech Stack
+# Features
 
-* Node.js
-* Express.js
-* MongoDB (Mongoose)
-* Cloudinary (Image Uploads)
-* Session-based Authentication
+- Authentication
+- Dashboard
+- Tool Management
+- Tool Content Management
+- Category Management
+- Page Management
+- SEO Management
+- FAQ Management
+- Image Uploads
+- Rich Text Editor
+- Form Validation
+- Drag & Drop Support
+- Responsive Admin UI
 
 ---
 
-## 📁 Project Structure
+# Tech Stack
+
+### Frontend
+
+- React 18
+- TypeScript
+- Vite
+- Tailwind CSS
+
+### State Management
+
+- Zustand
+
+### Routing
+
+- React Router
+
+### Form Handling
+
+- React Hook Form
+- Zod
+
+### HTTP Client
+
+- Axios
+
+### Rich Text Editor
+
+- TipTap
+- React Quill
+
+### UI Libraries
+
+- Lucide React
+- Iconify
+- DnD Kit
+
+---
+
+# Folder Structure
 
 ```
 src/
- ├── controllers/
- ├── models/
- ├── routes/
- ├── services/
- ├── middlewares/
- ├── utils/
- ├── config/
- └── server.js
+│
+├── api/                 # API services
+├── app/                 # Application entry
+├── components/          # Reusable UI components
+├── features/            # Feature modules
+│   ├── Authentication
+│   ├── Categories
+│   ├── Pages
+│   ├── Tools
+│   ├── Tool Content
+│   └── Dashboard
+│
+├── hooks/
+├── layouts/
+├── routes/
+├── services/
+├── types/
+├── utils/
+└── main.tsx
 ```
 
 ---
 
-## 🔐 Environment Variables (.env)
+# Prerequisites
 
-Create a `.env` file in the root directory and add:
+Before running the project, install:
 
-```
-DEV=localhost
+- Node.js (v20 or later recommended)
+- npm
 
-MONGO_URI=mongodb://localhost:27017/AI_Corner_Database?retryWrites=true&w=majority
+Check versions:
 
-ADMIN_EMAIL=admin@system.com
-ADMIN_PASSWORD=admin123
-
-FRONTEND_URL=https://aicorner.net
-FRONTEND_URL_CMS=http://localhost:5173
-
-CLOUDINARY_CLOUD_NAME=your_cloud_name
-CLOUDINARY_API_KEY=your_api_key
-CLOUDINARY_API_SECRET=your_api_secret
+```bash
+node -v
+npm -v
 ```
 
 ---
 
-## 📦 Installation
+# Installation
+
+## 1. Clone the repository
+
+```bash
+git clone <repository-url>
+```
+
+## 2. Open the project
+
+```bash
+cd cms-for-blog-main
+```
+
+## 3. Install dependencies
 
 ```bash
 npm install
@@ -64,79 +126,200 @@ npm install
 
 ---
 
-## 🛠️ Available Scripts
+# Environment Setup
 
-```json
-"start": "node src/server.js",
-"dev": "nodemon src/server.js",
-"setup": "node scripts/setup.js"
+Create a `.env` file in the project root.
+
+Example:
+
+```env
+VITE_API_URL=http://localhost:5000/api
 ```
 
-### 🔹 Script Explanation
-
-* `npm run dev` → Run server in development mode
-* `npm start` → Run server in production
-* `npm run setup` → Initialize database with default admin
-
----
-
-## ⚠️ Important Note (Setup Script)
-
-The `setup` script will:
-
-* Create a default admin user using:
-
-  * ADMIN_EMAIL
-  * ADMIN_PASSWORD
-
-👉 Make sure MongoDB is running before executing:
+If a `.env.example` file exists, copy it:
 
 ```bash
-npm run setup
+cp .env.example .env
+```
+
+On Windows:
+
+```cmd
+copy .env.example .env
 ```
 
 ---
 
-## ▶️ Run the Server
+# Run Development Server
 
 ```bash
 npm run dev
 ```
 
-Server will run on:
+The application will start at
 
 ```
-http://localhost:5000
-```
-
----
-
-## 🔗 API Base URL
-
-```
-http://localhost:5000/api
+http://localhost:5173
 ```
 
 ---
 
-## ☁️ Deployment
+# Build for Production
 
-* Backend deployed on Render
-* MongoDB Atlas for production DB
-* Environment variables configured securely
+```bash
+npm run build
+```
 
----
+The production files will be generated inside:
 
-## 🚀 Features
-
-* Authentication (session-based)
-* Role-based access control
-* CRUD operations (Pages, Categories, Tools)
-* Cloudinary image upload
-* Modular and scalable architecture
+```
+dist/
+```
 
 ---
 
-## 🧠 Author Notes
+# Preview Production Build
 
-This backend is designed to work seamlessly with a React-based CMS frontend and follows production-level architecture for scalability and maintainability.
+```bash
+npm run preview
+```
+
+---
+
+# Lint Project
+
+```bash
+npm run lint
+```
+
+---
+
+# Available Scripts
+
+| Command | Description |
+|----------|-------------|
+| npm install | Install dependencies |
+| npm run dev | Start development server |
+| npm run build | Create production build |
+| npm run preview | Preview production build |
+| npm run lint | Run ESLint |
+
+---
+
+# Backend Requirement
+
+This frontend requires the CMS Backend API.
+
+Configure the backend URL inside:
+
+```
+.env
+```
+
+Example:
+
+```env
+VITE_API_URL=http://localhost:5000/api
+```
+
+Make sure the backend server is running before using the application.
+
+---
+
+# Main Modules
+
+- Authentication
+- Dashboard
+- Categories
+- Pages
+- Tools
+- Tool Content
+- SEO
+- FAQs
+- Image Upload
+- Rich Text Editor
+
+---
+
+# Project Workflow
+
+```
+Login
+      ↓
+Dashboard
+      ↓
+Manage Categories
+      ↓
+Create Tools
+      ↓
+Add Tool Content
+      ↓
+Create Pages
+      ↓
+Publish Content
+```
+
+---
+
+# Deployment
+
+Build the application:
+
+```bash
+npm run build
+```
+
+Deploy the generated `dist` folder to your preferred hosting provider such as:
+
+- Netlify
+- Vercel
+- AWS S3
+- Nginx
+- Apache
+
+---
+
+# Troubleshooting
+
+### Dependencies not installing
+
+```bash
+rm -rf node_modules
+rm package-lock.json
+npm install
+```
+
+Windows:
+
+```cmd
+rmdir /s /q node_modules
+del package-lock.json
+npm install
+```
+
+---
+
+### API Not Working
+
+Verify:
+
+- Backend server is running
+- `VITE_API_URL` is correct
+- Backend allows CORS
+
+---
+
+### Build Errors
+
+Run:
+
+```bash
+npm install
+npm run build
+```
+
+---
+
+# License
+
+This project is intended for internal CMS administration and content management.
