@@ -9,7 +9,7 @@ export type BrowserType =
   | "Unknown";
 
 export interface Subscriber {
-  id: string;
+  _id: string;
   email: string;
   userAgent: string;
   ipAddress: string;

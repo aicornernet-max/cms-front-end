@@ -40,7 +40,7 @@ export default function SubscribersPage() {
 
   const handleConfirmDelete = useCallback(async () => {
     if (!pendingDelete) return;
-    await deleteSubscriber(pendingDelete.id, pendingDelete.email);
+    await deleteSubscriber(pendingDelete._id, pendingDelete.email);
     setPendingDelete(null);
   }, [pendingDelete, deleteSubscriber]);
 
