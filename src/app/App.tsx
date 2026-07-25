@@ -15,6 +15,7 @@ import { pagesRoutes } from "../routes/pages.routes"
 import { toolsRoutes } from "../routes/tools.routes"
 import { categoriesRoutes } from "../routes/categories.routes"
 import { ToolAlternative } from "../routes/Alternative.routes";
+import  {subscriberRoutes}  from "../routes/subscriber.routes";
 
 
 function App() {
@@ -49,6 +50,8 @@ function App() {
             {usersRoutes}
 
             {ToolAlternative}
+
+            {subscriberRoutes}
 
           </Route>
 

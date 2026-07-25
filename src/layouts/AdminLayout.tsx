@@ -86,6 +86,13 @@ export default function AdminLayout() {
                             AlternativeList
                         </Link>
 
+                        <Link
+                            to="/subscribers"
+                            className="block px-3 py-2 rounded hover:bg-gray-100"
+                        >
+                            Subscribers
+                        </Link>
+
                     </nav>
 
                 </div>
