@@ -58,7 +58,7 @@ export default function SubscriberTable({
           <tbody className="divide-y divide-gray-100">
             {subscribers.map((subscriber) => (
               <SubscriberTableRow
-                key={subscriber.id}
+                key={subscriber._id}
                 subscriber={subscriber}
                 onDeleteRequest={onDeleteRequest}
               />
@@ -71,7 +71,7 @@ export default function SubscriberTable({
       <div className="flex flex-col gap-3 sm:hidden">
         {subscribers.map((subscriber) => (
           <SubscriberCard
-            key={subscriber.id}
+            key={subscriber._id}
             subscriber={subscriber}
             onDeleteRequest={onDeleteRequest}
           />
