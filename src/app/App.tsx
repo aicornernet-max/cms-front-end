@@ -7,6 +7,8 @@ import Login from "../modules/auth/Login"
 
 import ProtectedRoute from "../routes/ProtectedRoute"
 
+import GuestRoute from "../routes/GuestRoute";
+
 import AdminLayout from "../layouts/AdminLayout"
 
 import Dashboard from "../pages/Dashboard"
@@ -25,11 +27,13 @@ function App() {
 
       <Routes>
 
-        {/* PUBLIC */}
-        <Route
-          path="/login"
-          element={<Login />}
-        />
+          {/* Guest Routes */}
+        <Route element={<GuestRoute />}>
+          <Route
+            path="/login"
+            element={<Login />}
+          />
+        </Route>
 
         {/* PROTECTED */}
         <Route element={<ProtectedRoute />}>

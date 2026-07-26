@@ -1,15 +1,14 @@
 import { Navigate, Outlet } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import FullScreenLoader from "../components/ui/FullScreenLoader"
 
-export default function ProtectedRoute() {
+export default function GuestRoute() {
   const { loading, authenticated } = useAuth();
 
   if (loading) {
-    return <FullScreenLoader/>;
+    return <div>Loading...</div>;
   }
 
   return authenticated
-    ? <Outlet />
-    : <Navigate to="/login" replace />;
+    ? <Navigate to="/" replace />
+    : <Outlet />;
 }

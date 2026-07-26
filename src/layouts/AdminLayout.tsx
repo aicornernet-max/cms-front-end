@@ -1,26 +1,21 @@
 import { Outlet, Link, useNavigate } from "react-router-dom"
 import { useState } from "react"
-import axios from "../api/axios"
+import { useAuth } from "../context/AuthContext";
 
 export default function AdminLayout() {
-
-    const user = JSON.parse(localStorage.getItem("user") || "{}")
-
-
+    const { user, logout } = useAuth();
+    
     const navigate = useNavigate()
     const [isOpen, setIsOpen] = useState(false)
 
-    const handleLogout = async () => {
-        try {
-            const res = await axios.post("/auth/logout")
-
-            if (res.data.success) {
-                navigate("/login")
-            }
-        } catch (err: any) {
-            console.error(err.response?.data || err)
-        }
+   const handleLogout = async () => {
+    try {
+        await logout();
+        navigate("/login", { replace: true });
+    } catch (err) {
+        console.error(err);
     }
+};
 
     return (
         <div className="flex h-screen overflow-hidden">
@@ -98,15 +93,15 @@ export default function AdminLayout() {
                 </div>
                 <div className="border-t pt-4 mt-4">
                     <p className="font-semibold">
-                        {user.name}
+                        {user?.name}
                     </p>
 
                     <p className="text-sm text-gray-500">
-                        {user.email}
+                        {user?.email}
                     </p>
 
                     <p className="text-xs bg-blue-100 text-blue-700 inline-block px-2 py-1 rounded mt-2">
-                        {user.role}
+                        {user?.role}
                     </p>
                 </div>
 
