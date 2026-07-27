@@ -1,67 +1,74 @@
 import { useState } from "react";
-import type { FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
+
+import LoginBanner from "../../components/auth/LoginBanner";
+import LoginCard from "../../components/auth/LoginCard";
 
 import { login } from "../../api/auth.api";
 import { useAuth } from "../../context/AuthContext";
 
 export default function Login() {
+  const navigate = useNavigate();
+  const { refreshUser } = useAuth();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] =
+    useState(false);
 
-  const { refreshUser } = useAuth();
+  const [error, setError] = useState("");
 
-  const handleLogin = async (e: FormEvent) => {
+  const handleLogin = async (
+  e: React.FormEvent<HTMLFormElement>
+) => {
     e.preventDefault();
 
+    setLoading(true);
+    setError("");
+
     try {
-      const res = await await login({
+      const res = await login({
         email,
         password,
       });
 
       if (res.data.success) {
         await refreshUser();
-
-        navigate("/", { replace: true });
+        navigate("/", {
+          replace: true,
+        });
       }
     } catch (err: any) {
-      alert(err.response?.data?.message || "Login failed");
+      setError(
+        err.response?.data?.message ||
+          "Invalid email or password."
+      );
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100 px-4">
-      <form
-        onSubmit={handleLogin}
-        className="bg-white p-5 sm:p-6 rounded-xl shadow w-full max-w-sm"
-      >
-        <h2 className="text-lg sm:text-xl font-bold mb-4">
-          Admin Login
-        </h2>
+    <div className="min-h-screen bg-[#F4F7FC]">
+  <div className="mx-auto flex min-h-screen w-full max-w-7xl flex-col lg:flex-row">
 
-        <input
-          type="email"
-          placeholder="Email"
-          className="w-full mb-3 p-2 border rounded"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
+    <LoginBanner />
 
-        <input
-          type="password"
-          placeholder="Password"
-          className="w-full mb-4 p-2 border rounded"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+    <LoginCard
+      email={email}
+      password={password}
+      error={error}
+      loading={loading}
+      showPassword={showPassword}
+      setEmail={setEmail}
+      setPassword={setPassword}
+      togglePassword={() => setShowPassword(!showPassword)}
+      onSubmit={handleLogin}
+    />
 
-        <button className="w-full bg-black text-white p-2 rounded">
-          Login
-        </button>
-      </form>
-    </div>
+  </div>
+</div>
   );
 }
