@@ -18,6 +18,7 @@ import { toolsRoutes } from "../routes/tools.routes"
 import { categoriesRoutes } from "../routes/categories.routes"
 import { ToolAlternative } from "../routes/Alternative.routes";
 import  {subscriberRoutes}  from "../routes/subscriber.routes";
+import  {LoginActivityRoutes}  from "../routes/LoginActivity.routes";
 
 
 function App() {
@@ -56,6 +57,8 @@ function App() {
             {ToolAlternative}
 
             {subscriberRoutes}
+
+            {LoginActivityRoutes}
 
           </Route>
 

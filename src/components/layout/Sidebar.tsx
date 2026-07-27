@@ -11,6 +11,7 @@ import {
     X,
     ChevronDown,
     ChevronRight,
+    History,
 } from "lucide-react";
 
 type SidebarProps = {
@@ -61,6 +62,11 @@ const menu = [
                 name: "Subscribers",
                 path: "/subscribers",
                 icon: Mail,
+            },
+            {
+                name: "LoginActivityList",
+                path: "/LoginActivityList",
+                icon: History,
             },
         ],
     },
@@ -113,8 +119,8 @@ export default function Sidebar({
             )}
 
             {/* Sidebar */}
-<aside
-  className={`
+            <aside
+                className={`
     fixed left-0 top-0 z-50
     flex h-full w-64 flex-col
     bg-white
@@ -125,7 +131,7 @@ export default function Sidebar({
     ${open ? "translate-x-0" : "-translate-x-full"}
     md:static md:translate-x-0
   `}
->
+            >
                 {/* Logo */}
 
                 <div className="flex items-center justify-between border-b border-slate-200 px-6 py-5">
