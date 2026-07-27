@@ -36,7 +36,7 @@ const formatTime = (isoString: string): string => {
   });
 };
 
-const Badge = ({ children, className }: { children: string; className: string }): JSX.Element => (
+const Badge = ({ children, className }: { children: string; className: string }) => (
   <span
     className={`inline-flex items-center rounded-full px-2.5 py-1 text-xs font-medium ${className}`}
   >
@@ -44,7 +44,7 @@ const Badge = ({ children, className }: { children: string; className: string })
   </span>
 );
 
-export const LoginActivityTable = ({ items }: LoginActivityTableProps): JSX.Element => {
+export const LoginActivityTable = ({ items }: LoginActivityTableProps) => {
   const [expandedIds, setExpandedIds] = useState<Set<string>>(new Set());
 
   const toggleExpanded = (id: string) => {

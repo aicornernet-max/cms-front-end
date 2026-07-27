@@ -9,7 +9,7 @@ interface DetailField {
   value: string;
 }
 
-export const LoginActivityDetails = ({ item }: LoginActivityDetailsProps): JSX.Element => {
+export const LoginActivityDetails = ({ item }: LoginActivityDetailsProps)=> {
   const fields: DetailField[] = [
     { label: 'Session ID', value: item.sessionId || '—' },
     { label: 'Operating System', value: item.os || '—' },

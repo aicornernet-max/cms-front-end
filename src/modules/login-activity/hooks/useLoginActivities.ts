@@ -19,8 +19,6 @@ import type {
   UseLoginActivitiesReturn,
 } from '../types';
 
-const toIsoDate = (date: Date): string => date.toISOString().split('T')[0];
-
 const getPresetDateRange = (
   preset: DateFilterPreset,
   from: string,

@@ -8,7 +8,7 @@ import { LoginActivityTable } from './components/LoginActivityTable';
 import { EmptyLoginActivity } from './components/EmptyLoginActivity';
 import { useLoginActivities } from './hooks/useLoginActivities';
 
-const ErrorState = ({ onRetry }: { onRetry: () => void }): JSX.Element => (
+const ErrorState = ({ onRetry }: { onRetry: () => void })=> (
   <div className="flex flex-col items-center justify-center rounded-xl border border-gray-100 bg-white px-6 py-16 text-center shadow-sm">
     <div className="flex h-14 w-14 items-center justify-center rounded-full bg-red-50">
       <AlertTriangle className="h-7 w-7 text-red-500" aria-hidden="true" />
@@ -26,7 +26,7 @@ const ErrorState = ({ onRetry }: { onRetry: () => void }): JSX.Element => (
   </div>
 );
 
-export const LoginActivityList = (): JSX.Element => {
+export const LoginActivityList = () => {
   const {
     items,
     pagination,

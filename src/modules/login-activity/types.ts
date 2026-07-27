@@ -56,7 +56,7 @@ export interface LoginActivityQueryParams {
   search?: string;
   status?: LoginStatus;
   action?: LoginAction;
-  date?: string;
+  date?: Exclude<DateFilterPreset, "all" | "custom">;
   from?: string;
   to?: string;
 }

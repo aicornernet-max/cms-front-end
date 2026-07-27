@@ -33,7 +33,7 @@ export const LoginActivityFilters = ({
   onDatePresetChange,
   onCustomDateRangeChange,
   onReset,
-}: LoginActivityFiltersProps): JSX.Element => {
+}: LoginActivityFiltersProps) => {
   const handleSearchInput = (event: ChangeEvent<HTMLInputElement>) => {
     onSearchChange(event.target.value);
   };

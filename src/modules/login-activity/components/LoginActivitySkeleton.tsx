@@ -2,7 +2,7 @@ interface LoginActivitySkeletonProps {
   rows?: number;
 }
 
-export const LoginActivitySkeleton = ({ rows = 8 }: LoginActivitySkeletonProps): JSX.Element => {
+export const LoginActivitySkeleton = ({ rows = 8 }: LoginActivitySkeletonProps) => {
   return (
     <div className="overflow-hidden rounded-xl border border-gray-100 bg-white shadow-sm">
       <div className="border-b border-gray-100 bg-gray-50 px-4 py-3">

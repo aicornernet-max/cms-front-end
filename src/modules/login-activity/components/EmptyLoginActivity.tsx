@@ -1,7 +1,7 @@
 import { SearchX } from 'lucide-react';
 import { EMPTY_STATE_DESCRIPTION, EMPTY_STATE_TITLE } from '../constants';
 
-export const EmptyLoginActivity = (): JSX.Element => {
+export const EmptyLoginActivity = () => {
   return (
     <div className="flex flex-col items-center justify-center rounded-xl border border-gray-100 bg-white px-6 py-16 text-center shadow-sm">
       <div className="flex h-14 w-14 items-center justify-center rounded-full bg-gray-50">

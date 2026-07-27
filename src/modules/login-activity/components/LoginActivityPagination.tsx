@@ -25,7 +25,7 @@ export const LoginActivityPagination = ({
   pagination,
   onPageChange,
   onLimitChange,
-}: LoginActivityPaginationProps): JSX.Element => {
+}: LoginActivityPaginationProps) => {
   const { page, totalPages, total, limit } = pagination;
   const pageNumbers = getPageNumbers(page, Math.max(totalPages, 1));
 
