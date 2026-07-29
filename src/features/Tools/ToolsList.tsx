@@ -99,39 +99,39 @@ const EmptyIcon = () => (
 /*  Tool avatar — real image with graceful fallback to a duotone initial tile */
 /* -------------------------------------------------------------------------- */
 
-function ToolAvatar({ tool, size = 48, radius = 14 }: { tool: Tool; size?: number; radius?: number }) {
-  const [errored, setErrored] = useState(false)
-  const hasImage = !!tool.toolImage&& !errored
-  const hue = useMemo(() => brandHue(tool.brand || tool.name || "?"), [tool.brand, tool.name])
+// function ToolAvatar({ tool, size = 48, radius = 14 }: { tool: Tool; size?: number; radius?: number }) {
+//   const [errored, setErrored] = useState(false)
+//   const hasImage = !!tool.toolImage&& !errored
+//   const hue = useMemo(() => brandHue(tool.brand || tool.name || "?"), [tool.brand, tool.name])
 
-  if (hasImage) {
-    return (
-      <img
-        src={tool.toolImage}
-        alt={tool.name}
-        onError={() => setErrored(true)}
-        style={{ width: size, height: size, borderRadius: radius }}
-        className="object-cover border border-[#E4E7EC] shrink-0 bg-white"
-        loading="lazy"
-      />
-    )
-  }
+//   if (hasImage) {
+//     return (
+//       <img
+//         src={tool.toolImage}
+//         alt={tool.name}
+//         onError={() => setErrored(true)}
+//         style={{ width: size, height: size, borderRadius: radius }}
+//         className="object-cover border border-[#E4E7EC] shrink-0 bg-white"
+//         loading="lazy"
+//       />
+//     )
+//   }
 
-  return (
-    <div
-      style={{
-        width: size,
-        height: size,
-        borderRadius: radius,
-        background: `linear-gradient(135deg, hsl(${hue} 70% 94%), hsl(${hue} 60% 86%))`,
-        color: `hsl(${hue} 45% 30%)`,
-      }}
-      className="tl-display flex items-center justify-center font-semibold shrink-0 text-lg border border-black/5"
-    >
-      {(tool.name?.charAt(0) || "?").toUpperCase()}
-    </div>
-  )
-}
+//   return (
+//     <div
+//       style={{
+//         width: size,
+//         height: size,
+//         borderRadius: radius,
+//         background: `linear-gradient(135deg, hsl(${hue} 70% 94%), hsl(${hue} 60% 86%))`,
+//         color: `hsl(${hue} 45% 30%)`,
+//       }}
+//       className="tl-display flex items-center justify-center font-semibold shrink-0 text-lg border border-black/5"
+//     >
+//       {(tool.name?.charAt(0) || "?").toUpperCase()}
+//     </div>
+//   )
+// }
 
 /* -------------------------------------------------------------------------- */
 /*  Skeleton card shown while loading                                         */
