@@ -19,6 +19,7 @@ import { categoriesRoutes } from "../routes/categories.routes"
 import { ToolAlternative } from "../routes/Alternative.routes";
 import  {subscriberRoutes}  from "../routes/subscriber.routes";
 import  {LoginActivityRoutes}  from "../routes/LoginActivity.routes";
+import  {DealsListPageRoutes}  from "../routes/deals.routes";
 
 
 function App() {
@@ -59,6 +60,8 @@ function App() {
             {subscriberRoutes}
 
             {LoginActivityRoutes}
+
+            {DealsListPageRoutes}
 
           </Route>
 

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import axios from "../../api/axios"
 import { useNavigate } from "react-router-dom"
-import { LoginActivityPagination } from "../../modules/login-activity/components/LoginActivityPagination";
+import {Pagination } from "../../components/common/Pagination";
 
 interface Tool {
   _id: string
@@ -408,7 +408,7 @@ export default function ToolsList() {
 
       {/* PAGINATION */}
       <div className="mt-6 bg-white border border-[#E4E7EC] rounded-2xl px-4 py-3">
-        <LoginActivityPagination
+        <Pagination
           pagination={pagination}
           onPageChange={setPage}
           onLimitChange={(newLimit: number) => {
