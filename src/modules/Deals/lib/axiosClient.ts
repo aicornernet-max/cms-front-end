@@ -5,6 +5,6 @@
  * Adjust the relative path below to point at your real instance. Nothing else
  * in this feature needs to change.
  */
-import axiosInstance from "../../../lib/axiosInstance";
+import axiosInstance from "../../../api/axios";
 
 export default axiosInstance;

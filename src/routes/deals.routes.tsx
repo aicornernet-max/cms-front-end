@@ -15,7 +15,7 @@ export const DealsListPageRoutes = (
     element={<EditDealPage />}
   />
   <Route
-    path="/CreateDealPage"
+    path="/admin/deals/create"
     element={<CreateDealPage />}
   />
   </>

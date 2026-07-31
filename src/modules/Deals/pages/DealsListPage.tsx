@@ -142,7 +142,7 @@ export function DealsListPage() {
             description="Create your first deal to get started."
             action={
               <Link
-                to="/CreateDealPage"
+                to="/admin/deals/create"
                 className="rounded-lg bg-violet-700 px-3.5 py-2 text-sm font-medium text-white hover:bg-violet-800"
               >
                 Create Deal

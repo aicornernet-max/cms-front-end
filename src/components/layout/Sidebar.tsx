@@ -80,6 +80,16 @@ const menu = [
             },
         ],
     },
+    {
+        title: "DEALS",
+        items: [
+            {
+                name: "Deals List",
+                path: "/admin/deals",
+                icon: Sparkles,
+            },
+        ],
+    },
 ];
 
 export default function Sidebar({
