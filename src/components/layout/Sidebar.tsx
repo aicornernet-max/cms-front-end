@@ -90,6 +90,16 @@ const menu = [
             },
         ],
     },
+    {
+        title: "bookings",
+        items: [
+            {
+                name: "bookings",
+                path: "bookings",
+                icon: Sparkles,
+            },
+        ],
+    },
 ];
 
 export default function Sidebar({

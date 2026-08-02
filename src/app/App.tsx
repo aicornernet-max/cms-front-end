@@ -20,6 +20,8 @@ import { ToolAlternative } from "../routes/Alternative.routes";
 import  {subscriberRoutes}  from "../routes/subscriber.routes";
 import  {LoginActivityRoutes}  from "../routes/LoginActivity.routes";
 import  {DealsListPageRoutes}  from "../routes/deals.routes";
+import {bookingsRoutes } from "../routes/bookings.routes";
+// import {advertisementsRoutes} from "../routes/advertisements.routes"
 
 
 function App() {
@@ -62,6 +64,10 @@ function App() {
             {LoginActivityRoutes}
 
             {DealsListPageRoutes}
+
+            {bookingsRoutes}
+{/* 
+            {advertisementsRoutes} */}
 
           </Route>
 
