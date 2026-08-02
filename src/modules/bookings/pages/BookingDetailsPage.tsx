@@ -1,14 +1,40 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams,useNavigate } from "react-router-dom";
 import { useBooking } from "../hooks/useBooking";
 import { StatusBadge } from "../components/StatusBadge";
 import { BookingTimeline } from "../components/BookingTimeline";
 import { StatusActionButtons } from "../components/StatusActionButtons";
 import { ErrorState } from "../components/BookingStates";
 import { formatDateTime, formatDuration, extractErrorMessage } from "../utils/booking.utils";
+import { useCreateAdvertisement } from "../../advertisements/hooks/useAdvertisementMutations";
 
 export default function BookingDetailsPage() {
+  const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
-  const { data: booking, isLoading, isError, error, refetch } = useBooking(id);
+
+  const createAdvertisement = useCreateAdvertisement();
+
+  const {
+    data: booking,
+    isLoading,
+    isError,
+    error,
+    refetch,
+  } = useBooking(id);
+
+  const handleCreateAdvertisement = () => {
+    if (!booking) return;
+
+    createAdvertisement.mutate(
+      {
+        bookingId: booking._id,
+      },
+      {
+        onSuccess: (advertisement) => {
+          navigate(`/advertisements/${advertisement._id}`);
+        },
+      }
+    );
+  };
 
   if (isLoading) {
     return <div className="animate-pulse text-sm text-gray-500">Loading booking…</div>;
@@ -39,6 +65,13 @@ export default function BookingDetailsPage() {
           >
             Edit
           </Link>
+
+          <button
+            onClick={handleCreateAdvertisement}
+            className="rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-indigo-700"
+          >
+            Create Advertisement
+          </button>
         </div>
       </div>
 
@@ -71,11 +104,6 @@ export default function BookingDetailsPage() {
           <p className="mt-1 whitespace-pre-wrap text-sm text-gray-800">{booking.notes}</p>
         </div>
       )}
-
-      <div className="rounded-lg border border-gray-200 bg-white p-4">
-        <p className="mb-3 text-xs font-medium text-gray-500">Actions</p>
-        <StatusActionButtons bookingId={booking._id} status={booking.status} />
-      </div>
     </div>
   );
 }

@@ -21,7 +21,7 @@ import  {subscriberRoutes}  from "../routes/subscriber.routes";
 import  {LoginActivityRoutes}  from "../routes/LoginActivity.routes";
 import  {DealsListPageRoutes}  from "../routes/deals.routes";
 import {bookingsRoutes } from "../routes/bookings.routes";
-// import {advertisementsRoutes} from "../routes/advertisements.routes"
+import {advertisementsRoutes} from "../routes/advertisements.routes"
 
 
 function App() {
@@ -66,8 +66,8 @@ function App() {
             {DealsListPageRoutes}
 
             {bookingsRoutes}
-{/* 
-            {advertisementsRoutes} */}
+            
+            {advertisementsRoutes}
 
           </Route>
 

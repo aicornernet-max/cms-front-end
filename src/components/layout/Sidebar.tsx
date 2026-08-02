@@ -100,6 +100,16 @@ const menu = [
             },
         ],
     },
+    {
+        title: "advertisements",
+        items: [
+            {
+                name: "advertisements",
+                path: "advertisements",
+                icon: Sparkles,
+            },
+        ],
+    },
 ];
 
 export default function Sidebar({
