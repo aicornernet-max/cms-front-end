@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useBookingSearch } from "../hooks/useSearch";
+// import { useBookingSearch } from "../hooks/useSearch";
 import type { BookingSearchResult } from "../types/advertisement.types";
 import { formatDate } from "../utils/advertisement.utils";
 
@@ -11,18 +11,18 @@ interface BookingAutocompleteProps {
 
 const BookingAutocomplete = ({
   value,
-  onChange,
+  // onChange,
   error,
 }: BookingAutocompleteProps) => {
   const [query, setQuery] = useState("");
   const [isOpen, setIsOpen] = useState(false);
-  const { data: results, isFetching } = useBookingSearch(query);
+  // const { data: results, isFetching } = useBookingSearch(query);
 
-  const handleSelect = (booking: BookingSearchResult) => {
-    onChange(booking);
-    setQuery("");
-    setIsOpen(false);
-  };
+  // const handleSelect = (booking: BookingSearchResult) => {
+  //   onChange(booking);
+  //   setQuery("");
+  //   setIsOpen(false);
+  // };
 
   return (
     <div className="relative">
@@ -60,7 +60,7 @@ const BookingAutocomplete = ({
         />
       )}
 
-      {isOpen && query.trim().length >= 2 && (
+      {/* {isOpen && query.trim().length >= 2 && (
         <div className="absolute z-10 mt-1 max-h-64 w-full overflow-y-auto rounded-md border border-gray-200 bg-white shadow-lg">
           {isFetching && (
             <div className="px-3 py-2 text-sm text-gray-500">Searching...</div>
@@ -88,7 +88,7 @@ const BookingAutocomplete = ({
               </button>
             ))}
         </div>
-      )}
+      )} */}
 
       {error && <p className="mt-1 text-xs text-red-600">{error}</p>}
     </div>

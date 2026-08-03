@@ -1,4 +1,4 @@
-import { ChangeEvent } from "react";
+import type { ChangeEvent } from "react";
 import type { AdvertisementListParams } from "../types/advertisement.types";
 import { STATUS_OPTIONS } from "../utils/advertisement.utils";
 

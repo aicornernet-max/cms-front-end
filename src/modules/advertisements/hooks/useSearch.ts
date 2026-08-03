@@ -23,12 +23,12 @@ export const useToolSearch = (query: string) => {
   });
 };
 
-export const useBookingSearch = (query: string) => {
-  const debouncedQuery = useDebouncedValue(query);
+// export const useBookingSearch = (query: string) => {
+//   const debouncedQuery = useDebouncedValue(query);
 
-  return useQuery({
-    queryKey: ["bookings", "search", debouncedQuery],
-    queryFn: () => advertisementService.searchBookings(debouncedQuery),
-    enabled: debouncedQuery.trim().length >= 2,
-  });
-};
+//   return useQuery({
+//     queryKey: ["bookings", "search", debouncedQuery],
+//     queryFn: () => advertisementService.searchBookings(debouncedQuery),
+//     enabled: debouncedQuery.trim().length >= 2,
+//   });
+// };

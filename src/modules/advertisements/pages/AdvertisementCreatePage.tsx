@@ -33,7 +33,7 @@ const AdvertisementCreatePage = () => {
   const onSubmit = (values: CreateAdvertisementFormValues) => {
     createMutation.mutate(values, {
       onSuccess: (advertisement) => {
-        navigate(`/advertisements/${advertisement.id}`);
+        navigate(`/advertisements/${advertisement._id}`);
       },
     });
   };

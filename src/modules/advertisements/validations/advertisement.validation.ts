@@ -21,10 +21,10 @@ export const updateAdvertisementSchema = z.object({
     .min(10, "Description must be at least 10 characters")
     .max(2000, "Description must be under 2000 characters"),
   originalPrice: z
-    .number({ invalid_type_error: "Original price must be a number" })
+    .number({ error: "Original price must be a number" })
     .positive("Original price must be greater than 0"),
   dealPrice: z
-    .number({ invalid_type_error: "Deal price must be a number" })
+    .number({ error: "Deal price must be a number" })
     .positive("Deal price must be greater than 0"),
   claimDealUrl: z.string().trim().url("Must be a valid URL"),
 }).refine((data) => data.dealPrice <= data.originalPrice, {

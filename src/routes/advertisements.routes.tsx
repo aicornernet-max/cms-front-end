@@ -1,7 +1,7 @@
 import { Route } from "react-router-dom";
 import AdvertisementListPage from "../modules/advertisements/pages/AdvertisementListPage";
 import AdvertisementDetailsPage from "../modules/advertisements/pages/AdvertisementDetailsPage";
-import AdvertisementCreatePage from "../modules/advertisements/pages/AdvertisementCreatePage";
+// import AdvertisementCreatePage from "../modules/advertisements/pages/AdvertisementCreatePage";
 
 /**
  * NOTE: this assumes App.tsx renders routes inside a top-level
@@ -20,7 +20,7 @@ import AdvertisementCreatePage from "../modules/advertisements/pages/Advertiseme
 export const advertisementsRoutes = (
   <>
     <Route path="/advertisements" element={<AdvertisementListPage />} />
-    <Route path="/advertisements/new" element={<AdvertisementCreatePage />} />
+    {/* <Route path="/advertisements/new" element={<AdvertisementCreatePage />} /> */}
     <Route path="/advertisements/:id" element={<AdvertisementDetailsPage />} />
   </>
 );

@@ -21,7 +21,7 @@ const timeField = z
 // No upper bound: bookings can run 24 / 48 / 72 / 96 hours or any custom
 // duration, in 0.5-hour increments — matches booking.model.js / booking.validation.js.
 const durationField = z
-  .number({ invalid_type_error: "Duration is required" })
+  .number({ error: "Duration is required" })
   .min(0.5, "Duration must be at least 0.5 hours")
   .refine((value) => Math.round(value * 2) === value * 2, {
     message: "Duration must be in 0.5-hour increments",

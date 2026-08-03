@@ -2,7 +2,7 @@ import axiosInstance from "../../../api/axios";
 import type {
   Advertisement,
   AdvertisementListParams,
-  BookingSearchResult,
+  // BookingSearchResult,
   CreateAdvertisementPayload,
   MarkReadyResult,
   PaginatedResult,

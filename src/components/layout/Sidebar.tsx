@@ -88,23 +88,13 @@ const menu = [
                 path: "/admin/deals",
                 icon: Sparkles,
             },
-        ],
-    },
-    {
-        title: "bookings",
-        items: [
             {
                 name: "bookings",
                 path: "bookings",
                 icon: Sparkles,
             },
-        ],
-    },
-    {
-        title: "advertisements",
-        items: [
             {
-                name: "advertisements",
+                name: "Feaure Deals",
                 path: "advertisements",
                 icon: Sparkles,
             },

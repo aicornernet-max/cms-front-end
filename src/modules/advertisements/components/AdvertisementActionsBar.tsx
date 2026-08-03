@@ -24,7 +24,7 @@ const AdvertisementActionsBar = ({
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
   const [validationErrors, setValidationErrors] = useState<string[]>([]);
 
-  const markReadyMutation = useMarkReady(advertisement.id);
+  const markReadyMutation = useMarkReady(advertisement._id);
   const createVersionMutation = useCreateVersion();
   const deleteMutation = useDeleteAdvertisement();
 
@@ -40,15 +40,15 @@ const AdvertisementActionsBar = ({
   };
 
   const handleCreateVersion = () => {
-    createVersionMutation.mutate(advertisement.id, {
+    createVersionMutation.mutate(advertisement._id, {
       onSuccess: (newVersion) => {
-        navigate(`/advertisements/${newVersion.id}`);
+        navigate(`/advertisements/${newVersion._id}`);
       },
     });
   };
 
   const handleDelete = () => {
-    deleteMutation.mutate(advertisement.id, {
+    deleteMutation.mutate(advertisement._id, {
       onSuccess: () => {
         setIsDeleteDialogOpen(false);
         navigate("/advertisements");
