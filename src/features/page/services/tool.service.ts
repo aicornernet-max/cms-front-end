@@ -5,6 +5,6 @@ export const searchToolsApi =
     query: string
   ) => {
     return axios.get(
-      `/tools?search=${query}`
+      `/tools/search/?search=${query}`
     );
   };
