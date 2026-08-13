@@ -145,7 +145,7 @@ export const PageTable = ({
                   <div className="flex items-center justify-end gap-2">
                     <button
                       type="button"
-                      onClick={() => onPreview?.(page._id)}
+                      onClick={() => onPreview?.(page.slug)}
                       disabled={!onPreview}
                       title="Preview"
                       className="inline-flex h-9 items-center gap-1.5 rounded-lg border border-slate-200 px-2.5 text-xs font-medium text-slate-600 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-40"
