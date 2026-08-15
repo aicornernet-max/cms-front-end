@@ -39,8 +39,7 @@ export default function SeoPageEditPage() {
   >({});
 
   const page = pageQuery.data;
-  const isPublished = page?.status === "published";
-
+ 
   // Published pages are never edited directly — redirect to (or create) the
   // active draft, then swap the route to that draft's id.
 
