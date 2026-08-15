@@ -12,6 +12,7 @@ import {
     ChevronDown,
     ChevronRight,
     History,
+    UserRoundPen,
 } from "lucide-react";
 
 type SidebarProps = {
@@ -48,6 +49,11 @@ const menu = [
                 path: "/categories",
                 icon: FolderTree,
             },
+            {
+                name: "Author Profiles",
+                path: "/admin/authors",
+                icon: UserRoundPen,
+            },
         ],
     },
     {
@@ -76,26 +82,6 @@ const menu = [
             {
                 name: "Alternative List",
                 path: "/AlternativeList",
-                icon: Sparkles,
-            },
-        ],
-    },
-    {
-        title: "DEALS",
-        items: [
-            {
-                name: "Deals List",
-                path: "/admin/deals",
-                icon: Sparkles,
-            },
-            {
-                name: "bookings",
-                path: "bookings",
-                icon: Sparkles,
-            },
-            {
-                name: "Feaure Deals",
-                path: "advertisements",
                 icon: Sparkles,
             },
         ],

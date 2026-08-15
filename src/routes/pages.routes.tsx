@@ -1,8 +1,8 @@
 import { Route, useNavigate } from "react-router-dom";
-import PageCreate from "../features/page/PageCreate";
-import PageEdit from "../features/page/PageEdit";
 import PreviewPage from "../features/page/PreviewPage";
 import SeoPagesPage from "../modules/seo-pages/pages/SeoPagesPage";
+import SeoPageCreatePage from "../modules/seo-pages/pages/SeoPageCreatePage";
+import SeoPageEditPage from "../modules/seo-pages/pages/SeoPageEditPage";
 
 const SeoPagesRoute = () => {
   const navigate = useNavigate();
@@ -24,12 +24,12 @@ export const pagesRoutes = (
 
     <Route
       path="/pages/create"
-      element={<PageCreate />}
+      element={<SeoPageCreatePage />}
     />
 
     <Route
       path="/pages/edit/:id"
-      element={<PageEdit />}
+      element={<SeoPageEditPage />}
     />
 
     <Route

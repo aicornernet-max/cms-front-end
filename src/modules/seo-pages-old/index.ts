@@ -1,6 +1,4 @@
 export { default as SeoPagesPage } from "./pages/SeoPagesPage";
-export { default as SeoPageCreatePage } from "./pages/SeoPageCreatePage";
-export { default as SeoPageEditPage } from "./pages/SeoPageEditPage";
 
 export * from "./types";
 export * from "./hooks/usePages";

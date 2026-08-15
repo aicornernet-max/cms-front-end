@@ -22,6 +22,7 @@ import  {LoginActivityRoutes}  from "../routes/LoginActivity.routes";
 import  {DealsListPageRoutes}  from "../routes/deals.routes";
 import {bookingsRoutes } from "../routes/bookings.routes";
 import {advertisementsRoutes} from "../routes/advertisements.routes"
+import {authorRoutes} from "../routes/author.routes"
 
 
 function App() {
@@ -68,6 +69,8 @@ function App() {
             {bookingsRoutes}
             
             {advertisementsRoutes}
+
+            {authorRoutes} 
 
           </Route>
 

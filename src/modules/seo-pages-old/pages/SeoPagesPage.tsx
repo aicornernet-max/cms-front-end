@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
 import { Plus, RefreshCw } from "lucide-react";
-import { useNavigate } from "react-router-dom";
 import { useCategories } from "../hooks/useCategories";
 import { usePages } from "../hooks/usePages";
 import { PageFilters } from "../components/PageFilters";
@@ -9,10 +8,6 @@ import { PageTable } from "../components/PageTable";
 import { CategorySummary } from "../components/CategorySummary";
 import type { PageFilters as Filters, SeoPagesPageProps } from "../types";
 import { Pagination } from "../../../components/common/Pagination";
-
-import toast from "react-hot-toast";
-import { useCreateOrGetDraft } from "../hooks/useCreateOrGetDraft";
-import { extractErrorMessage } from "../lib/errors";
 
 const DEFAULT_FILTERS: Filters = {
   search: "",
@@ -25,13 +20,12 @@ const DEFAULT_LIMIT = 20;
 
 export default function SeoPagesPage({
   onPreview,
+  onEdit,
 }: SeoPagesPageProps) {
-  const navigate = useNavigate();
   const [filters, setFilters] = useState<Filters>(DEFAULT_FILTERS);
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(DEFAULT_LIMIT);
   const [debouncedSearch, setDebouncedSearch] = useState("");
-  const createOrGetDraft = useCreateOrGetDraft();
 
   useEffect(() => {
     const timer = window.setTimeout(() => {
@@ -111,34 +105,6 @@ export default function SeoPagesPage({
     setPage(nextPage);
   };
 
-  const handleEdit = (pageId: string) => {
-  const selectedPage = data?.pages.find((page) => page._id === pageId);
-
-  if (!selectedPage) {
-    toast.error("Page not found");
-    return;
-  }
-
-  // Published pages must create/get a draft first.
-  if (selectedPage.status === "published") {
-    createOrGetDraft.mutate(selectedPage._id, {
-      onSuccess: (draft) => {
-        navigate(`/pages/edit/${draft._id}`);
-      },
-      onError: (error) => {
-        toast.error(
-          extractErrorMessage(error, "Failed to create draft"),
-        );
-      },
-    });
-
-    return;
-  }
-
-  // Draft/unpublished pages can be edited directly.
-  navigate(`/pages/edit/${selectedPage._id}`);
-};
-
   const paginationForCommonComponent = {
     total: pagination.totalItems,
     page: pagination.page,
@@ -162,7 +128,6 @@ export default function SeoPagesPage({
 
           <button
             type="button"
-            onClick={() => navigate("/pages/create")}
             className="inline-flex h-10 items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700"
           >
             <Plus className="h-4 w-4" aria-hidden="true" />
@@ -227,7 +192,7 @@ export default function SeoPagesPage({
             pages={data?.pages ?? []}
             isLoading={pagesQuery.isLoading}
             onPreview={onPreview}
-            onEdit={handleEdit}
+            onEdit={onEdit}
           />
 
           <Pagination

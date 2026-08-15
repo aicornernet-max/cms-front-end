@@ -1,18 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
 import { Plus, RefreshCw } from "lucide-react";
-import { useNavigate } from "react-router-dom";
 import { useCategories } from "../hooks/useCategories";
 import { usePages } from "../hooks/usePages";
-import { PageFilters } from "../components/PageFilters";
-import { PageSummaryCards } from "../components/PageSummaryCards";
-import { PageTable } from "../components/PageTable";
-import { CategorySummary } from "../components/CategorySummary";
+import { PageFilters, PageSummaryCards, PageTable, CategorySummary } from "../components/list";
 import type { PageFilters as Filters, SeoPagesPageProps } from "../types";
 import { Pagination } from "../../../components/common/Pagination";
-
-import toast from "react-hot-toast";
-import { useCreateOrGetDraft } from "../hooks/useCreateOrGetDraft";
-import { extractErrorMessage } from "../lib/errors";
 
 const DEFAULT_FILTERS: Filters = {
   search: "",
@@ -23,15 +15,11 @@ const DEFAULT_FILTERS: Filters = {
 
 const DEFAULT_LIMIT = 20;
 
-export default function SeoPagesPage({
-  onPreview,
-}: SeoPagesPageProps) {
-  const navigate = useNavigate();
+export default function SeoPagesListPage({ onPreview, onEdit, onCreate }: SeoPagesPageProps) {
   const [filters, setFilters] = useState<Filters>(DEFAULT_FILTERS);
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(DEFAULT_LIMIT);
   const [debouncedSearch, setDebouncedSearch] = useState("");
-  const createOrGetDraft = useCreateOrGetDraft();
 
   useEffect(() => {
     const timer = window.setTimeout(() => {
@@ -43,12 +31,7 @@ export default function SeoPagesPage({
 
   useEffect(() => {
     setPage(1);
-  }, [
-    debouncedSearch,
-    filters.categoryId,
-    filters.status,
-    filters.toolsCount,
-  ]);
+  }, [debouncedSearch, filters.categoryId, filters.status, filters.toolsCount]);
 
   const queryParams = useMemo(
     () => ({
@@ -59,14 +42,7 @@ export default function SeoPagesPage({
       status: filters.status,
       toolsCount: filters.toolsCount,
     }),
-    [
-      page,
-      limit,
-      debouncedSearch,
-      filters.categoryId,
-      filters.status,
-      filters.toolsCount,
-    ],
+    [page, limit, debouncedSearch, filters.categoryId, filters.status, filters.toolsCount],
   );
 
   const pagesQuery = usePages(queryParams);
@@ -84,10 +60,7 @@ export default function SeoPagesPage({
   };
 
   const updateFilters = (patch: Partial<Filters>) => {
-    setFilters((current) => ({
-      ...current,
-      ...patch,
-    }));
+    setFilters((current) => ({ ...current, ...patch }));
   };
 
   const clearFilters = () => {
@@ -101,43 +74,11 @@ export default function SeoPagesPage({
   };
 
   const handlePageChange = (nextPage: number) => {
-    if (
-      nextPage < 1 ||
-      (pagination.totalPages > 0 && nextPage > pagination.totalPages)
-    ) {
+    if (nextPage < 1 || (pagination.totalPages > 0 && nextPage > pagination.totalPages)) {
       return;
     }
-
     setPage(nextPage);
   };
-
-  const handleEdit = (pageId: string) => {
-  const selectedPage = data?.pages.find((page) => page._id === pageId);
-
-  if (!selectedPage) {
-    toast.error("Page not found");
-    return;
-  }
-
-  // Published pages must create/get a draft first.
-  if (selectedPage.status === "published") {
-    createOrGetDraft.mutate(selectedPage._id, {
-      onSuccess: (draft) => {
-        navigate(`/pages/edit/${draft._id}`);
-      },
-      onError: (error) => {
-        toast.error(
-          extractErrorMessage(error, "Failed to create draft"),
-        );
-      },
-    });
-
-    return;
-  }
-
-  // Draft/unpublished pages can be edited directly.
-  navigate(`/pages/edit/${selectedPage._id}`);
-};
 
   const paginationForCommonComponent = {
     total: pagination.totalItems,
@@ -152,18 +93,15 @@ export default function SeoPagesPage({
         <header className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="text-sm font-medium text-blue-600">SEO Management</p>
-            <h1 className="mt-1 text-2xl font-bold tracking-tight text-slate-900">
-              SEO Pages
-            </h1>
-            <p className="mt-1 text-sm text-slate-500">
-              Manage and monitor your SEO listicle pages.
-            </p>
+            <h1 className="mt-1 text-2xl font-bold tracking-tight text-slate-900">SEO Pages</h1>
+            <p className="mt-1 text-sm text-slate-500">Manage and monitor your SEO listicle pages.</p>
           </div>
 
           <button
             type="button"
-            onClick={() => navigate("/pages/create")}
-            className="inline-flex h-10 items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700"
+            onClick={onCreate}
+            disabled={!onCreate}
+            className="inline-flex h-10 items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
           >
             <Plus className="h-4 w-4" aria-hidden="true" />
             Create SEO Page
@@ -173,12 +111,8 @@ export default function SeoPagesPage({
         {pagesQuery.isError ? (
           <div className="flex items-center justify-between gap-4 rounded-2xl border border-red-200 bg-red-50 p-4">
             <div>
-              <p className="text-sm font-semibold text-red-800">
-                Unable to load SEO pages.
-              </p>
-              <p className="mt-1 text-xs text-red-600">
-                Please try again.
-              </p>
+              <p className="text-sm font-semibold text-red-800">Unable to load SEO pages.</p>
+              <p className="mt-1 text-xs text-red-600">Please try again.</p>
             </div>
 
             <button
@@ -217,9 +151,7 @@ export default function SeoPagesPage({
             </div>
 
             {pagesQuery.isFetching && !pagesQuery.isLoading ? (
-              <span className="text-xs font-medium text-slate-400">
-                Updating…
-              </span>
+              <span className="text-xs font-medium text-slate-400">Updating…</span>
             ) : null}
           </div>
 
@@ -227,7 +159,7 @@ export default function SeoPagesPage({
             pages={data?.pages ?? []}
             isLoading={pagesQuery.isLoading}
             onPreview={onPreview}
-            onEdit={handleEdit}
+            onEdit={onEdit}
           />
 
           <Pagination
@@ -237,9 +169,7 @@ export default function SeoPagesPage({
           />
         </section>
 
-        {data ? (
-          <CategorySummary categories={data.categorySummary} />
-        ) : null}
+        {data ? <CategorySummary categories={data.categorySummary} /> : null}
       </div>
     </main>
   );
